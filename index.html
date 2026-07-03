@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sai Srinivasan — AI Engineer & Researcher</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink: #000000;
+    --surface: #0D0D0D;
+    --signal: #E8A33D;
+    --paper: #EDE6D8;
+    --muted: #9A9A9A;
+    --line: #262626;
+    --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    --max-w: 760px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  a { color: var(--signal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  h1, h2, h3 {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- nav ---------- */
+  nav { border-bottom: 1px solid var(--line); }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-mark { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 1rem; }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--paper); }
+  @media (max-width: 560px) { .nav-links { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 56px 0 48px; border-bottom: 1px solid var(--line); }
+  .hero .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); margin-bottom: 14px; }
+  .hero p.lede { color: var(--muted); max-width: 56ch; margin-bottom: 22px; }
+  .hero-links { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; display: flex; gap: 18px; flex-wrap: wrap; }
+
+  /* ---------- section shell ---------- */
+  section { padding: 44px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  section h2 {
+    font-size: 1.1rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+
+  /* ---------- about ---------- */
+  #about p { color: var(--muted); margin-bottom: 12px; }
+  #about strong { color: var(--paper); font-weight: 500; }
+
+  /* ---------- experience ---------- */
+  .entry { margin-bottom: 30px; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .entry-head h3 { font-size: 1rem; }
+  .entry-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted); }
+  .entry .org { color: var(--muted); font-size: 0.92rem; margin-bottom: 8px; }
+  .entry ul { padding-left: 18px; color: var(--muted); font-size: 0.92rem; }
+  .entry li { margin-bottom: 4px; }
+  .stack-row { margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted); }
+
+  /* ---------- research ---------- */
+  .research-card { border: 1px solid var(--line); border-radius: 4px; padding: 20px; }
+  .research-card .badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--signal); margin-bottom: 10px; }
+  .research-card h3 { font-size: 1rem; margin-bottom: 6px; }
+  .research-card .venue { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+  .research-card p { color: var(--muted); font-size: 0.9rem; }
+
+  /* ---------- projects ---------- */
+  .proj { margin-bottom: 28px; }
+  .proj:last-child { margin-bottom: 0; }
+  .proj-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+  .proj h3 { font-size: 1rem; }
+  .status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+  }
+  .status.wip { color: var(--signal); border-color: var(--signal); }
+  .proj p { color: var(--muted); font-size: 0.92rem; margin-bottom: 8px; }
+  .proj .stack-row { margin-top: 6px; }
+  .proj-links { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; margin-top: 6px; }
+
+  /* ---------- skills ---------- */
+  .skill-row { margin-bottom: 14px; }
+  .skill-row:last-child { margin-bottom: 0; }
+  .skill-row .cap {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .skill-row .items { color: var(--paper); font-size: 0.92rem; }
+
+  /* ---------- education ---------- */
+  .edu-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+  .edu-row h3 { font-size: 1rem; }
+  .edu-row .org { color: var(--muted); font-size: 0.9rem; }
+  .edu-row .meta { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted); text-align: right; }
+
+  /* ---------- footer ---------- */
+  footer { padding: 48px 0; text-align: center; }
+  footer h2 { font-size: 1.3rem; margin-bottom: 10px; }
+  footer p { color: var(--muted); margin-bottom: 18px; }
+  .contact-links {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.9s var(--ease-apple), transform 0.9s var(--ease-apple);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- custom cursor orb ---------- */
+  @media (pointer: fine) {
+    body { cursor: none; }
+    a, button { cursor: none; }
+
+    #cursor-core {
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      margin: -4px 0 0 -4px;
+      border-radius: 50%;
+      background: var(--signal);
+      pointer-events: none;
+      z-index: 9999;
+      transition: width 0.25s var(--ease-apple), height 0.25s var(--ease-apple), margin 0.25s var(--ease-apple), opacity 0.25s ease;
+    }
+    #cursor-orb {
+      position: fixed;
+      top: 0; left: 0;
+      width: 34px; height: 34px;
+      margin: -17px 0 0 -17px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #E8A33D55 0%, #E8A33D22 40%, transparent 72%);
+      pointer-events: none;
+      z-index: 9998;
+      transition: width 0.35s var(--ease-apple), height 0.35s var(--ease-apple), margin 0.35s var(--ease-apple), opacity 0.35s ease;
+    }
+    body.cursor-hover #cursor-core { width: 12px; height: 12px; margin: -6px 0 0 -6px; }
+    body.cursor-hover #cursor-orb { width: 54px; height: 54px; margin: -27px 0 0 -27px; background: radial-gradient(circle, #E8A33D77 0%, #E8A33D33 45%, transparent 75%); }
+    body.cursor-down #cursor-core { width: 6px; height: 6px; margin: -3px 0 0 -3px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cursor-orb"></div>
+<div id="cursor-core"></div>
+
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">Sai Srinivasan</div>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Chennai, India · Open to relocation</div>
+    <h1>AI Engineer &amp; Researcher</h1>
+    <p class="lede">
+      I build LLM systems — RAG pipelines, retrieval infrastructure, and
+      routing logic — with a research background in signal processing.
+      Currently building a multi-provider LLM routing package in my own time.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:your.email@example.com">Email</a>
+      <a href="#" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" target="_blank" rel="noopener">Resume (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>
+      I'm an AI Engineer at <strong>Netcraft Technologies</strong>, where I build
+      and ship RAG pipelines and LLM-powered applications — vector retrieval
+      over <strong>ChromaDB</strong>, orchestration with <strong>LangChain</strong>,
+      and requests routed across <strong>GPT-4</strong> and open-source models
+      like <strong>Llama</strong> and <strong>Mistral</strong> depending on
+      what a task needs.
+    </p>
+    <p>
+      Before that, I was a Project Associate at <strong>IIT Madras Pravartak</strong>,
+      where a first-author paper on detecting vocal nodules from phonation data
+      won <strong>Best Paper</strong> at ICIICS 2024.
+    </p>
+    <p>
+      Longer-term, I'm building toward a deep-tech AI startup.
+    </p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>AI Engineer</h3>
+        <span class="entry-date">Nov 2024 — Present</span>
+      </div>
+      <div class="org">Netcraft Technologies</div>
+      <ul>
+        <li>Build and maintain RAG pipelines for production LLM applications, from ingestion and chunking through retrieval and generation.</li>
+        <li>Route requests across GPT-4 and open-source models (Llama, Mistral) based on task requirements and cost constraints.</li>
+        <li>Design vector search infrastructure on ChromaDB and orchestration logic with LangChain.</li>
+      </ul>
+      <div class="stack-row">ChromaDB · GPT-4 · LangChain · Llama · Mistral</div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Project Associate</h3>
+        <span class="entry-date">2023 — 2024</span>
+      </div>
+      <div class="org">IIT Madras Pravartak</div>
+      <ul>
+        <li>First-author research on vocal nodule detection from phonation data using spectral features and recurrence plots.</li>
+        <li>Published at ICIICS 2024 and awarded Best Paper.</li>
+      </ul>
+      <div class="stack-row">Signal Processing · Python · Recurrence Plots</div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Lab Instructor &amp; Teaching Assistant</h3>
+        <span class="entry-date">Prior</span>
+      </div>
+      <div class="org">Sri Ramachandra Institute of Higher Education and Research</div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <h2>Research</h2>
+    <div class="research-card">
+      <div class="badge">Best Paper Award</div>
+      <h3>Detection of Vocal Nodules from Phonation Data Using Spectral Features and Recurrence Plots</h3>
+      <div class="venue">ICIICS 2024 · First Author</div>
+      <p>
+        A classification approach for identifying vocal nodules using spectral
+        features extracted from phonation recordings, combined with recurrence
+        plot analysis to capture the non-linear dynamics of vocal fold vibration.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+
+    <div class="proj">
+      <div class="proj-head">
+        <h3>Hybrid Cascade Router</h3>
+        <span class="status wip">work in progress</span>
+      </div>
+      <p>
+        A provider-agnostic, multi-stage LLM routing package I'm actively
+        building. It sends requests to a cheap fast tier first and escalates
+        to stronger models only when a pluggable strategy — confidence-based,
+        rule-based, or a hybrid of both — decides the cheap tier's answer
+        isn't good enough. Currently has adapters for OpenAI, Anthropic, and
+        local open-source models via Ollama, with a full test suite.
+      </p>
+      <div class="stack-row">Python · OpenAI SDK · Anthropic SDK · Ollama · asyncio · pytest</div>
+      <div class="proj-links"><a href="#" target="_blank" rel="noopener">Source</a> · <a href="#" target="_blank" rel="noopener">Writeup</a></div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <h3>Refreshable Braille Display</h3>
+      </div>
+      <p>
+        Motor-actuated refreshable braille display built at the Kani Tamil
+        Hackathon. Coordinated the team to 2nd place, working across firmware
+        and actuation logic.
+      </p>
+      <div class="stack-row">Embedded · Actuators · Team Lead</div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <h3>Siamese Networks &amp; Knowledge Distillation</h3>
+      </div>
+      <p>
+        PyTorch reimplementations of two foundational papers — Siamese network
+        architectures for similarity learning, and knowledge distillation for
+        compressing large models into smaller, faster students.
+      </p>
+      <div class="stack-row">PyTorch · Paper Reproduction</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="skill-row">
+      <span class="cap">LLM &amp; RAG</span>
+      <span class="items">LangChain, ChromaDB, GPT-4, Llama, Mistral, Prompt Engineering</span>
+    </div>
+    <div class="skill-row">
+      <span class="cap">ML / DL</span>
+      <span class="items">PyTorch, TensorFlow, Spectral Analysis, Signal Processing</span>
+    </div>
+    <div class="skill-row">
+      <span class="cap">Engineering</span>
+      <span class="items">Python, asyncio, pytest, Cybersecurity, IoT</span>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+    <div class="edu-row">
+      <div>
+        <h3>B.Tech, Computer Science</h3>
+        <div class="org">Sri Ramachandra Institute of Higher Education and Research</div>
+      </div>
+      <div class="meta">CGPA 8.48<br>Cybersecurity &amp; IoT specialisation</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <p>Open to research collaborations, engineering roles, and interesting problems.</p>
+    <div class="contact-links">
+      <a href="mailto:your.email@example.com">your.email@example.com</a>
+      <a href="#" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  // ---- scroll reveal ----
+  const revealSelectors = 'section h2, .entry, .research-card, .proj, .skill-row, .edu-row, .hero .eyebrow, .hero h1, .hero p.lede, .hero-links';
+  const revealEls = Array.from(document.querySelectorAll(revealSelectors));
+  revealEls.forEach(el => el.classList.add('reveal'));
+
+  const groups = new Map();
+  revealEls.forEach(el => {
+    const parent = el.parentElement;
+    if (!groups.has(parent)) groups.set(parent, []);
+    groups.get(parent).push(el);
+  });
+  groups.forEach(list => {
+    list.forEach((el, i) => { el.style.transitionDelay = `${Math.min(i * 0.08, 0.32)}s`; });
+  });
+
+  if (reduceMotion) {
+    revealEls.forEach(el => el.classList.add('visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  }
+
+  // ---- glowing cursor orb ----
+  if (finePointer && !reduceMotion) {
+    const core = document.getElementById('cursor-core');
+    const orb = document.getElementById('cursor-orb');
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+    let orbX = mouseX, orbY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      core.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+
+    function animateOrb() {
+      orbX += (mouseX - orbX) * 0.14;
+      orbY += (mouseY - orbY) * 0.14;
+      orb.style.transform = `translate(${orbX}px, ${orbY}px)`;
+      requestAnimationFrame(animateOrb);
+    }
+    animateOrb();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+    document.addEventListener('mousedown', () => document.body.classList.add('cursor-down'));
+    document.addEventListener('mouseup', () => document.body.classList.remove('cursor-down'));
+  } else {
+    const core = document.getElementById('cursor-core');
+    const orb = document.getElementById('cursor-orb');
+    if (core) core.style.display = 'none';
+    if (orb) orb.style.display = 'none';
+  }
+})();
+</script>
+
+</body>
+</html>
